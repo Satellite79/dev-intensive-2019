@@ -26,11 +26,22 @@ fun Date.add(value: Int, units: TimeUnits = TimeUnits.SECOND): Date {
     return this
 }
 
-enum class TimeUnits {
-    SECOND,
-    MINUTE,
-    HOUR,
-    DAY
+enum class TimeUnits(val  plEndings : Array<String>) {
+    SECOND(arrayOf("секунду", "секунды", "секунд")),
+    MINUTE(arrayOf("минуту", "минуты", "минут")),
+    HOUR(arrayOf("час", "часа", "часов")),
+    DAY(arrayOf("день", "дня", "дней"));
+
+    fun plural(num: Int) : String {
+        var modulo = num % 100
+        if(modulo !in 11..14)
+            modulo  = num % 10
+        return when(modulo) {
+            1     -> "$num ${plEndings[0]}"
+            2,3,4 -> "$num ${plEndings[1]}"
+            else  -> "$num ${plEndings[2]}"
+        }
+    }
 }
 
 fun Date.humanizeDiff(): String {
