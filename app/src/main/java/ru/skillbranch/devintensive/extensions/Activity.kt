@@ -28,13 +28,5 @@ fun Activity.isKeyboardOpen() : Boolean {
 }
 
 fun Activity.isKeyboardClosed() : Boolean {
-   val activityRootView = window.decorView.rootView
-   val r = Rect()
-   //r will be populated with the coordinates of your view that area still visible.
-   activityRootView.getWindowVisibleDisplayFrame(r)
-   val heightDiff = activityRootView.getRootView().getHeight() - (r.bottom - r.top)
-   return if (heightDiff < activityRootView.getRootView().getHeight() / 4)  // if more than 100 pixels, its probably a keyboard...
-      true
-   else
-      false
+  return !isKeyboardOpen()
 }

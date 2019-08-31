@@ -41,8 +41,8 @@ object Utils {
         val firstChar: Char?
         val secondChar : Char?
 
-        firstChar = if(firstName.isNullOrBlank()) null else firstName!!.firstOrNull()!!.toUpperCase()
-        secondChar = if(lastName.isNullOrBlank()) null else lastName!!.firstOrNull()!!.toUpperCase()
+        firstChar = if(firstName.isNullOrBlank()) null else firstName.firstOrNull()!!.toUpperCase()
+        secondChar = if(lastName.isNullOrBlank()) null else lastName.firstOrNull()!!.toUpperCase()
 
         return when {
             firstChar != null && secondChar != null -> "$firstChar$secondChar"
@@ -50,5 +50,31 @@ object Utils {
             firstChar == null && secondChar != null -> "$secondChar"
             else -> null
         }
+    }
+
+
+    fun validateGitHubRep(repository: String) : Boolean {
+
+        if(repository.isEmpty())
+            return true
+
+        val exceptionSet = setOf("enterprise", "features", "topics", "collections", "trending", "events", "marketplace",
+                                 "pricing", "nonprofit", "customer-stories", "security", "login", "join")
+        val regex = Regex("^((?:https://)|(?:https://www\\.)|(?:www\\.))?github.com/[a-zA-Z0-9-]+$")
+
+        //val matched = regex.containsMatchIn(repository)
+        var matched = regex.matches(repository)
+
+        if(matched) {
+            val userName = repository.substringAfterLast("/")
+            if (userName.first() == '-' || userName.last() == '-')
+                matched = false
+
+            if (exceptionSet.contains(userName))
+                matched = false
+        }
+        println(matched)
+
+        return matched
     }
 }
