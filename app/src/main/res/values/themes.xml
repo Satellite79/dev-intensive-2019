@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/color_primary</item>
         <item name="colorPrimaryDark">@color/color_primary_dark</item>
@@ -11,6 +11,29 @@
         <item name="colorIcon">@color/color_gray</item>
         <item name="colorDivider">@color/color_divider_dark</item>
 
+        <item name="android:windowActivityTransitions">true</item>
+        <item name="android:windowAnimationStyle">@style/ActivityTransitions</item>
+
+        <item name="colorItemBackground">@android:color/white</item>
+        <item name="colorItemText">@color/color_gray_dark</item>
+        <item name="colorCounter">@color/color_indicator</item>
+        <item name="colorIndicator">@color/color_green</item>
+        <item name="colorSwipeBackground">@color/color_primary_dark</item>
+        <item name="colorSelectUser">@color/color_primary</item>
+        <item name="colorChipBg">@color/color_primary_light</item>
+        <item name="colorChipCloseIcon">@android:color/white</item>
+        <item name="colorSnackbarText">@android:color/white</item>
+
+        <item name="snackbarStyle">@style/snackbar_style</item>
     </style>
+
+
+    <style name="snackbar_style" parent="Widget.MaterialComponents.Snackbar">
+        <item name="android:background">@color/color_primary_light</item>
+    </style>
+
+    <style name = "AppTheme.AppBarOverlay" parent="ThemeOverlay.MaterialComponents.Dark.ActionBar"/>
+    <style name = "AppTheme.PopupOverlay" parent="ThemeOverlay.MaterialComponents.Light"/>
+
 
 </resources>
