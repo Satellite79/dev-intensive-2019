@@ -36,6 +36,6 @@ object ChatRepository {
         val lastMessageChat = archiveChats()?.maxBy{ it.lastMessageDate() ?: Date(0) }
         val lastMessageChatShort = lastMessageChat?.lastMessageShort()
 
-        return Triple(lastMessageChatShort?.first,lastMessageChatShort?.second, lastMessageChat?.lastMessageDate())
+        return Triple(lastMessageChatShort?.first, ("@"+ lastMessageChatShort?.second) ?:"", lastMessageChat?.lastMessageDate())
     }
 }
